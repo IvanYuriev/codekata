@@ -44,7 +44,13 @@ namespace KarateChop
         [TestCaseSource("ReturnChopCases")]
         public int Recursion_Test(int SearchNumber, List<int> SearchArray)
         {
-            //var chopper = new RecursionChopper();
+            var chopper = new RecursionChopper();
+            return chopper.Chop(SearchNumber, SearchArray);
+        }
+
+        [TestCaseSource("ReturnChopCases")]
+        public int Procedural_Test(int SearchNumber, List<int> SearchArray)
+        {
             var chopper = new ProceduralChopper();
             return chopper.Chop(SearchNumber, SearchArray);
         }
