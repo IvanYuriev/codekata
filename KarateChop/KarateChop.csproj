@@ -43,7 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Impl01.cs" />
+    <Compile Include="ProceduralChopper.cs" />
+    <Compile Include="RecursionChopper.cs" />
     <Compile Include="IKarateChop.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTests.cs" />
