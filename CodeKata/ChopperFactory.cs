@@ -13,6 +13,7 @@ namespace CodeKata
             {
                 { 1, new RecursionChopper() },
                 { 2, new ProceduralChopper() },
+                { 3, new FunctionalChopper() },
             };
 
         public static IKarateChop GetChopperAlgorithm(int index)
@@ -21,6 +22,11 @@ namespace CodeKata
                 throw new ArgumentOutOfRangeException("index");
 
             return instances[index];
+        }
+
+        public static IList<string> GetAllNames()
+        {
+            return instances.Select(x => String.Format("{0}. {1}", x.Key, x.Value.GetType().Name)).ToList();
         }
     }
 

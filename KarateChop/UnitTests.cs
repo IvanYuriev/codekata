@@ -41,17 +41,24 @@ namespace KarateChop
             new TestCaseData(8, new List<int> {1, 3, 5, 7, 9}).Returns(-1),
         };
 
-        [TestCaseSource("ReturnChopCases")]
-        public int Recursion_Test(int SearchNumber, List<int> SearchArray)
-        {
-            var chopper = new RecursionChopper();
-            return chopper.Chop(SearchNumber, SearchArray);
-        }
+        //[TestCaseSource("ReturnChopCases")]
+        //public int Recursion_Test(int SearchNumber, List<int> SearchArray)
+        //{
+        //    var chopper = new RecursionChopper();
+        //    return chopper.Chop(SearchNumber, SearchArray);
+        //}
+
+        //[TestCaseSource("ReturnChopCases")]
+        //public int Procedural_Test(int SearchNumber, List<int> SearchArray)
+        //{
+        //    var chopper = new ProceduralChopper();
+        //    return chopper.Chop(SearchNumber, SearchArray);
+        //}
 
         [TestCaseSource("ReturnChopCases")]
-        public int Procedural_Test(int SearchNumber, List<int> SearchArray)
+        public int Functional_Test(int SearchNumber, List<int> SearchArray)
         {
-            var chopper = new ProceduralChopper();
+            var chopper = new FunctionalChopper();
             return chopper.Chop(SearchNumber, SearchArray);
         }
     }

@@ -14,8 +14,8 @@ namespace CodeKata
             do
             {
                 Console.WriteLine("Select what algorithm do you want to use:");
-                Console.WriteLine("1 - Recursion");
-                Console.WriteLine("2 - Procedural");
+                foreach(var name in ChopperFactory.GetAllNames())
+                    Console.WriteLine(name);
 
                 try
                 {
