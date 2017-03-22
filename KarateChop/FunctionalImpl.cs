@@ -36,14 +36,24 @@ namespace KarateChop
                     return part.StartingIndex + part.Left.Count;
                 case +1:
                     return await Task.Run(
-                        () => { return ChopAsync(lookingFor, Split(part.StartingIndex, part.Left));
+                        () => { return ChopAsync(lookingFor, TakeLeftPart(part));
                     });
                 case -1:
                     return await Task.Run(
-                        () => { return ChopAsync(lookingFor, Split(part.StartingIndex + part.Left.Count + 1, part.Right));
+                        () => { return ChopAsync(lookingFor, TakeRightPart(part));
                     });
             }
             return -1;
+        }
+
+        private Part TakeLeftPart(Part part)
+        {
+            return Split(part.StartingIndex, part.Left);
+        }
+
+        private Part TakeRightPart(Part part)
+        {
+            return Split(part.StartingIndex + part.Left.Count + 1, part.Right);
         }
 
         private Part Split(int startingIndex, IList<int> list)

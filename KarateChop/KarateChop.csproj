@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FunctionalImpl.cs" />
+    <Compile Include="MapReduceChopper.cs" />
     <Compile Include="ProceduralChopper.cs" />
     <Compile Include="RecursionChopper.cs" />
     <Compile Include="IKarateChop.cs" />

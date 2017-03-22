@@ -55,10 +55,17 @@ namespace KarateChop
         //    return chopper.Chop(SearchNumber, SearchArray);
         //}
 
+        //[TestCaseSource("ReturnChopCases")]
+        //public int Functional_Test(int SearchNumber, List<int> SearchArray)
+        //{
+        //    var chopper = new FunctionalChopper();
+        //    return chopper.Chop(SearchNumber, SearchArray);
+        //}
+
         [TestCaseSource("ReturnChopCases")]
-        public int Functional_Test(int SearchNumber, List<int> SearchArray)
+        public int MapReduce_Test(int SearchNumber, List<int> SearchArray)
         {
-            var chopper = new FunctionalChopper();
+            var chopper = new MapReduceChopper();
             return chopper.Chop(SearchNumber, SearchArray);
         }
     }
