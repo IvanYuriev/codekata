@@ -65,7 +65,7 @@ namespace KarateChop
         [TestCaseSource("ReturnChopCases")]
         public int MapReduce_Test(int SearchNumber, List<int> SearchArray)
         {
-            var chopper = new MapReduceChopper();
+            var chopper = new FunctionalChopper2(); //new MapReduceChopper();
             return chopper.Chop(SearchNumber, SearchArray);
         }
     }

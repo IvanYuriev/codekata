@@ -46,7 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FunctionalImpl.cs" />
+    <Compile Include="FunctionalChopper.cs" />
+    <Compile Include="FunctionalChopper2.cs" />
     <Compile Include="MapReduceChopper.cs" />
     <Compile Include="ProceduralChopper.cs" />
     <Compile Include="RecursionChopper.cs" />

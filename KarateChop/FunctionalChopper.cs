@@ -30,6 +30,7 @@ namespace KarateChop
                 part.Left.Count == 0)
                 return -1;
 
+            //pattern matching should be used here 
             switch(cmp)
             {
                 case 0:
@@ -56,7 +57,7 @@ namespace KarateChop
             return Split(part.StartingIndex + part.Left.Count + 1, part.Right);
         }
 
-        private Part Split(int startingIndex, IList<int> list)
+        private Part Split(int startingIndex, ICollection<int> list)
         {
             var half = list.Count / 2;
             return new Part() {
