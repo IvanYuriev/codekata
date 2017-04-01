@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BinaryTreeChopper.cs" />
     <Compile Include="FunctionalChopper.cs" />
     <Compile Include="FunctionalChopper2.cs" />
     <Compile Include="MapReduceChopper.cs" />
