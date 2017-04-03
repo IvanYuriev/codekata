@@ -21,7 +21,7 @@ namespace KarateChop
 
         private async Task<int> ChopAsync(int lookingFor, Part part)
         {
-            Console.WriteLine(System.Threading.Thread.CurrentThread.ManagedThreadId);
+            //Console.WriteLine(System.Threading.Thread.CurrentThread.ManagedThreadId);
 
             var cmp = part.MiddleValue.CompareTo(lookingFor); //-1 0 +1  (< == >)
 

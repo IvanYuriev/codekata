@@ -21,32 +21,6 @@ namespace KarateChop
                 count = (int)half;
                 index = index + count;
 
-                #region Thoughts
-                // 0  1  2  3  4  5  6
-                // count 3, half = 1
-                //    v
-                // 1  2  3
-
-                // count 4, half = 2
-                //       v
-                // 1  2  3  4
-
-                // count 5, half = 2
-                //       v
-                // 1  3  5  7  9
-
-                // count 6, half = 3
-                //          v
-                // 1  3  5  7  9  8
-
-                // count 7, half = 3
-                //          v
-                // 1  3  5  7  9  8  0
-                #endregion
-
-                //I think we can get rid of it now
-                //if (index >= list.Count) return -1;
-
                 if (list[index] == lookingFor) return index;
                 else if(index == tempIndex) return -1; //the end is reached, but item not found
 

@@ -43,43 +43,22 @@ namespace KarateChop
             return index;
         }
 
-        private int Chop(int baseIndex, int lookingFor, IList<int> list)
+        private int Chop(int baseIndex, int lookingFor, IEnumerable<int> list)
         {
-            if (list.Count == 0) return -1;
+            var cnt = list.Count();
+            if (cnt == 0) return -1;
 
-            var half = list.Count / 2; //in case Count = 1, half = 0
-            // looking for = 1
-            // 1, 2, 3, 4  = count:4, half:2
-            // half - 2
-            // 1. 1 < 3 ? yes, take 2: 1, 2 = count:2, half:1, baseIndex:0
-            // 2. 1 < 2 ? yes, take 1: 1 = count:1, half:0, baseIndex:0
-            // 3. 1 < 1 ? NO, 1 == 1 ? YES - return 0 + 0 = 0
-            // OK
-
-            // looking for = 4
-            // 1, 2, 3, 4  = count:4, half:2
-            // 1. 4 < 3 ? no, skip 2: 3, 4 = count:2, half:1, baseIndex:0 + 2 = 2
-            // 2. 4 < 4 ? no
-            // 3. 4 == 4 ? yes: 2 + 1 = 3
-            // OK
-
-            if (lookingFor < list[half])
-            {
-                //take the left part - searching item < current item
-                var l = new List<int>(list.Take(half).ToList());
-                return Chop(baseIndex, lookingFor, l);
-            }
+            var half = cnt / 2; //in case Count = 1, half = 0
+            var middle = list.Skip(half).FirstOrDefault();
+            //TODO: take and skip linq functions could influence the performance!
+            if (half == 0)
+                return -1;
+            else if (middle == lookingFor)
+                return baseIndex + half;
+            else if (lookingFor < middle)
+                return Chop(baseIndex, lookingFor, list.Take(half));
             else
-            {
-                //take the right part - searching item >= current item
-                if (list[half] == lookingFor)
-                    return baseIndex + half;
-                else if (half == 0) //there is no other elements left
-                    return -1;
-
-                var l = new List<int>(list.Skip(half).ToList());
-                return Chop(baseIndex + half, lookingFor, l);
-            }
+                return Chop(baseIndex + half, lookingFor, list.Skip(half));
         }
     }
 }

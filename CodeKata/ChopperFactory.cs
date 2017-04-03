@@ -8,16 +8,7 @@ namespace CodeKata
 {
     class ChopperFactory
     {
-        private static Dictionary<int, IKarateChop>
-            instances;
-        //= new Dictionary<int, IKarateChop>
-        //    {
-        //        { 1, new RecursionChopper() },
-        //        { 2, new ProceduralChopper() },
-        //        { 3, new FunctionalChopper() },
-        //        { 4, new MapReduceChopper() },
-        //    };
-
+        private static Dictionary<int, IKarateChop> instances;
         static ChopperFactory()
         {
             var type = typeof(IKarateChop);

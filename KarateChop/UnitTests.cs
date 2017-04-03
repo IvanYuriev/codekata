@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
@@ -41,32 +42,99 @@ namespace KarateChop
             new TestCaseData(8, new List<int> {1, 3, 5, 7, 9}).Returns(-1),
         };
 
-        //[TestCaseSource("ReturnChopCases")]
-        //public int Recursion_Test(int SearchNumber, List<int> SearchArray)
-        //{
-        //    var chopper = new RecursionChopper();
-        //    return chopper.Chop(SearchNumber, SearchArray);
-        //}
+        [TestCaseSource("ReturnChopCases")]
+        public int Recursion_Test(int SearchNumber, List<int> SearchArray)
+        {
+            var chopper = new RecursionChopper();
+            return chopper.Chop(SearchNumber, SearchArray);
+        }
 
-        //[TestCaseSource("ReturnChopCases")]
-        //public int Procedural_Test(int SearchNumber, List<int> SearchArray)
-        //{
-        //    var chopper = new ProceduralChopper();
-        //    return chopper.Chop(SearchNumber, SearchArray);
-        //}
+        [TestCaseSource("ReturnChopCases")]
+        public int Procedural_Test(int SearchNumber, List<int> SearchArray)
+        {
+            var chopper = new ProceduralChopper();
+            return chopper.Chop(SearchNumber, SearchArray);
+        }
 
-        //[TestCaseSource("ReturnChopCases")]
-        //public int Functional_Test(int SearchNumber, List<int> SearchArray)
-        //{
-        //    var chopper = new FunctionalChopper();
-        //    return chopper.Chop(SearchNumber, SearchArray);
-        //}
+        [TestCaseSource("ReturnChopCases")]
+        public int Functional_Test(int SearchNumber, List<int> SearchArray)
+        {
+            var chopper = new FunctionalChopper();
+            return chopper.Chop(SearchNumber, SearchArray);
+        }
+
+        [TestCaseSource("ReturnChopCases")]
+        public int Functional2_Test(int SearchNumber, List<int> SearchArray)
+        {
+            var chopper = new FunctionalChopper2();
+            return chopper.Chop(SearchNumber, SearchArray);
+        }
 
         [TestCaseSource("ReturnChopCases")]
         public int MapReduce_Test(int SearchNumber, List<int> SearchArray)
         {
-            var chopper = new BinaryTreeChopper(); //new MapReduceChopper();
+            var chopper = new MapReduceChopper();
             return chopper.Chop(SearchNumber, SearchArray);
+        }
+
+        [TestCaseSource("ReturnChopCases")]
+        public int BinaryTree_Test(int SearchNumber, List<int> SearchArray)
+        {
+            var chopper = new BinaryTreeChopper();
+            return chopper.Chop(SearchNumber, SearchArray);
+        }
+
+        [Test]
+        public void PerformanceComparer()
+        {
+            var perf = new Stopwatch();
+            var opt = Stopwatch.IsHighResolution;
+
+            var list = Enumerable.Range(1, 10000000).ToList();
+            IKarateChop chopper = null;
+            int index = -1;
+            int searching = 2;
+
+            perf.Start();
+            chopper = new RecursionChopper();
+            index = chopper.Chop(searching, list);
+            perf.Stop();
+            Console.WriteLine(chopper.GetType().Name + " result=" + index + ": " + perf.ElapsedMilliseconds);
+            perf.Reset();
+
+            perf.Start();
+            chopper = new ProceduralChopper();
+            index = chopper.Chop(searching, list);
+            perf.Stop();
+            Console.WriteLine(chopper.GetType().Name + " result=" + index + ": " + perf.ElapsedMilliseconds);
+            perf.Reset();
+
+            perf.Start();
+            chopper = new FunctionalChopper();
+            index = chopper.Chop(searching, list);
+            perf.Stop();
+            Console.WriteLine(chopper.GetType().Name + " result=" + index + ": " + perf.ElapsedMilliseconds);
+
+            perf.Start();
+            chopper = new FunctionalChopper2();
+            index = chopper.Chop(searching, list);
+            perf.Stop();
+            Console.WriteLine(chopper.GetType().Name + " result=" + index + ": " + perf.ElapsedMilliseconds);
+            perf.Reset();
+
+            perf.Start();
+            chopper = new MapReduceChopper();
+            index = chopper.Chop(searching, list);
+            perf.Stop();
+            Console.WriteLine(chopper.GetType().Name + " result=" + index + ": " + perf.ElapsedMilliseconds);
+            perf.Reset();
+
+            perf.Start();
+            chopper = new BinaryTreeChopper();
+            index = chopper.Chop(searching, list);
+            perf.Stop();
+            Console.WriteLine(chopper.GetType().Name + " result=" + index + ": " + perf.ElapsedMilliseconds);
+
         }
     }
 }
