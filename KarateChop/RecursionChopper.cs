@@ -51,10 +51,10 @@ namespace KarateChop
             var half = cnt / 2; //in case Count = 1, half = 0
             var middle = list.Skip(half).FirstOrDefault();
             //TODO: take and skip linq functions could influence the performance!
-            if (half == 0)
-                return -1;
-            else if (middle == lookingFor)
+            if (middle == lookingFor)
                 return baseIndex + half;
+            else if (half == 0)
+                return -1; 
             else if (lookingFor < middle)
                 return Chop(baseIndex, lookingFor, list.Take(half));
             else

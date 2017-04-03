@@ -84,13 +84,13 @@ namespace KarateChop
             return chopper.Chop(SearchNumber, SearchArray);
         }
 
-        [Test]
+        [Test, Ignore("Take some time to run, so run it manually!")]
         public void PerformanceComparer()
         {
             var perf = new Stopwatch();
             var opt = Stopwatch.IsHighResolution;
 
-            var list = Enumerable.Range(1, 10000000).ToList();
+            var list = Enumerable.Range(1, 2000000).ToList();
             IKarateChop chopper = null;
             int index = -1;
             int searching = 2;
