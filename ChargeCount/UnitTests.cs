@@ -13,7 +13,7 @@ namespace ChargeCount
         public void ChargeCount_ExampleInDescription()
         {
             var c = new ChargeCounter();
-            var result = c.Attempt1(4, new int[] { 1, 2 });
+            var result = c.Attempt2(4, new int[] { 1, 2 });
 
             Assert.AreEqual(3, result);
         }
@@ -22,7 +22,7 @@ namespace ChargeCount
         public void ChargeCount_7with125()
         {
             var c = new ChargeCounter();
-            var result = c.Attempt1(7, new int[] { 1, 2, 5 });
+            var result = c.Attempt2(7, new int[] { 1, 2, 5 });
             // 15 could be charged as:
             // 1. 1+1+1+1+1+1+1+1
             // 2. 1+1+1+1+1+2
@@ -38,7 +38,7 @@ namespace ChargeCount
         public void ChargeCount_ComplexExampleSorted()
         {
             var c = new ChargeCounter();
-            var result = c.Attempt1(300, new int[] { 5, 10, 20, 50, 100, 200, 500 });
+            var result = c.Attempt2(300, new int[] { 5, 10, 20, 50, 100, 200, 500 });
             Assert.AreEqual(1022, result);
         }
 
@@ -46,7 +46,7 @@ namespace ChargeCount
         public void ChargeCount_ComplexNoPennies()
         {
             var c = new ChargeCounter();
-            var result = c.Attempt1(301, new int[] { 5, 10, 20, 50, 100, 200, 500 });
+            var result = c.Attempt2(301, new int[] { 5, 10, 20, 50, 100, 200, 500 });
             Assert.AreEqual(0, result);
         }
 
@@ -54,7 +54,7 @@ namespace ChargeCount
         public void ChargeCount_ComplexUnsorted()
         {
             var c = new ChargeCounter();
-            var result = c.Attempt1(300, new int[] { 500, 5, 50, 100, 20, 200, 10 });
+            var result = c.Attempt2(300, new int[] { 500, 5, 50, 100, 20, 200, 10 });
             Assert.AreEqual(1022, result);
         }
     }

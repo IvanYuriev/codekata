@@ -4,10 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CodeKata;
 
-namespace CodeKata
+namespace CodeKata.Core
 {
-    public class SearchInfoBuilder
+    public class SearchInfoBuilder<T>
     {
         public int Algo { get; private set; }
         public int SearchValue { get; private set; }
@@ -16,17 +17,19 @@ namespace CodeKata
 
         private readonly TextReader input;
         private readonly TextWriter output;
+        private readonly IAlgoFactory<T> algo;
 
-        public SearchInfoBuilder(TextReader inputStream, TextWriter outputStream)
+        public SearchInfoBuilder(TextReader inputStream, TextWriter outputStream, IAlgoFactory<T> algoFactory)
         {
             input = inputStream;
             output = outputStream;
+            algo = algoFactory;
         }
 
         public void AskAlgorithm()
         {
             output.WriteLine("Select what algorithm do you want to use:");
-            ChopperFactory.GetAllNames().Select(x => { Console.WriteLine(x); return x; });
+            algo.GetAllNames().Select(x => { Console.WriteLine(x); return x; }).ToList();
 
             var answer = input.ReadLine();
             var algorithm = 1;
@@ -36,9 +39,9 @@ namespace CodeKata
             Algo = algorithm;
         }
 
-        public void AskSortedListOfValues()
+        public void AskListOfValues(string message)
         {
-            output.WriteLine("Enter the sorted array of numbers (separated by space):");
+            output.WriteLine(message);
             var answer = input.ReadLine();
             var list = answer
                 .Split(' ')
@@ -48,9 +51,9 @@ namespace CodeKata
             List = list;
         }
 
-        public void AskSearchingValue()
+        public void AskSingleValue(string message)
         {
-            output.WriteLine("Enter the value you're looking for:");
+            output.WriteLine(message);
             var answer = input.ReadLine();
             var value = 1;
             if (!Int32.TryParse(answer, out value))
@@ -58,14 +61,19 @@ namespace CodeKata
             SearchValue = value;
         }
 
-        public void SetFoundIndex(int index)
+        public void SetResult(int index)
         {
             FoundIndex = index;
         }
 
+        public void ShowResult()
+        {
+            output.WriteLine(this.ToString());
+        }
+
         public override string ToString()
         {
-            return String.Format("Index of {0} in {1} list = {2} using {3} algorithm.",
+            return String.Format("Result of {0} with {1} list = {2} using {3} algorithm.",
                 SearchValue, 
                 String.Join(", ", List.ToArray()),
                 FoundIndex,

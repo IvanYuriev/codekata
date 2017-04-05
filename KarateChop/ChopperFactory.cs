@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using CodeKata;
+using CodeKata.Core;
 using KarateChop;
 
-namespace CodeKata
+namespace KarateChop
 {
-    class ChopperFactory
+    class ChopperFactory : IAlgoFactory<IKarateChop>
     {
         private static Dictionary<int, IKarateChop> instances;
-        static ChopperFactory()
+        public ChopperFactory()
         {
             var type = typeof(IKarateChop);
             var types = AppDomain.CurrentDomain.GetAssemblies()
@@ -22,7 +24,7 @@ namespace CodeKata
         }
 
 
-        public static IKarateChop GetChopperAlgorithm(int index)
+        public IKarateChop GetAlgorithm(int index)
         {
             if (index <= 0 || index > instances.Count)
                 throw new ArgumentOutOfRangeException("index");
@@ -30,7 +32,7 @@ namespace CodeKata
             return instances[index];
         }
 
-        public static IList<string> GetAllNames()
+        public IList<string> GetAllNames()
         {
             return instances.Select(x => String.Format("{0}. {1}", x.Key, x.Value.GetType().Name)).ToList();
         }

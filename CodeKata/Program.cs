@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ChargeCount;
+using Core;
 
 namespace CodeKata
 {
@@ -9,33 +11,18 @@ namespace CodeKata
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("=================== Welcome to KarateChop Kata! ===================");
-            var answer = String.Empty;
-            var info = new SearchInfoBuilder(Console.In, Console.Out);
-            do
+            Console.WriteLine("What task do you want to run:");
+            Console.WriteLine("1. Karate Chop");
+            Console.WriteLine("2. Charge Counter");
+            var answer = Console.ReadLine();
+            UIBase ui = null;
+            switch(answer.ToLower().Trim(' ', '.'))
             {
-                try
-                {
-                    info.AskAlgorithm();
-                    info.AskSortedListOfValues();
-                    info.AskSearchingValue();
-
-                    info.SetFoundIndex(ChopperFactory.GetChopperAlgorithm(info.Algo)
-                        .Chop(info.SearchValue, info.List));
-
-                    info.ToString();
-                }
-                catch(Exception ex)
-                {
-                    Console.WriteLine("Error: " + ex.Message);
-                }
-
-                Console.WriteLine("Do you want to repeat? y/n");
-                answer = Console.ReadLine();
-            } while (answer.Equals("y", StringComparison.InvariantCultureIgnoreCase));
+                case "1": ui = new KarateChop.UI(" ==== Karate Chop Task is running! ==== "); break;
+                case "2": ui = new ChargeCount.UI(" ==== Charge Counter Task is running! ==== "); break;
+                default: Console.WriteLine("Task not found!"); break;
+            }
+            ui?.Run();
         }
-
-
-
     }
 }

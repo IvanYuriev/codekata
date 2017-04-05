@@ -48,16 +48,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChopperFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SearchInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ChargeCount\ChargeCount.csproj">
+      <Project>{BE447CB0-0A02-4CC0-AE02-52875F630432}</Project>
+      <Name>ChargeCount</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{BD36DD3E-AC41-4398-9322-24063BA05F66}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KarateChop\KarateChop.csproj">
       <Project>{F6A8B766-083A-420C-AA18-352F967865D5}</Project>
       <Name>KarateChop</Name>
